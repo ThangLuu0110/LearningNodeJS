@@ -1,16 +1,8 @@
 const express = require('express');
 const router = express.Router();
+const {getHomePage, getSamplePage} = require('../controllers/homeController')
 
-router.get('/', (req, res) => {
-  res.send('Hello The Whole New World!')
-})
-
-router.get('/abc', (req, res) => {
-  res.send('<h1>Check New Route!</h1>')
-})
-
-router.get('/sample', (req, res) => {
-  res.render('sample.ejs')
-})
+router.get('/', getHomePage)
+router.get('/sample', getSamplePage)
 
 module.exports = router; //export default router to use in server.js
