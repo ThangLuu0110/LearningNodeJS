@@ -6,6 +6,10 @@ const port = process.env.PORT || 3000
 const hostname = process.env.HOST_NAME || 'localhost';
 const connection = require('./config/database');
 
+//config request body parser
+app.use(express.json()); // Used to parse JSON bodies
+app.use(express.urlencoded({ extended: true })); //Parse URL-encoded bodies
+
 //config view engine for ejs
 configViewEngine(app);
 
