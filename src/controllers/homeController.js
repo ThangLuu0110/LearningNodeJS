@@ -9,10 +9,18 @@ const getSamplePage = (req, res) => {
 }
 
 const handleCreateUser = (req, res) => {
-    console.log('>>> check req.body: ', req.body)
-    res.send('Handle create new user')
-} 
- 
+    const { email, name, city } = req.body;
+    const query = 'INSERT INTO Users (email, name, city) VALUES (?, ?, ?)';
+    connection.query(query, [email, name, city], (error, results) => {
+        if (error) {
+            console.error('Error creating user:', error);
+            res.status(500).send('Error creating user');
+        } else {
+            res.send('User created successfully');
+        }
+    });
+}
+
 module.exports = {
     getHomePage,
     getSamplePage,
