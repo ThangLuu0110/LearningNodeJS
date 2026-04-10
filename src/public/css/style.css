@@ -81,3 +81,27 @@
 }
 
 .user-table tr:hover {background-color: coral;}
+
+.action-btn {
+  display: flex;
+  gap: 10px;
+}
+
+.edit-btn, .delete-btn {
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.edit-btn {
+  background-color: #4CAF50;
+}
+
+.delete-btn {
+  background-color: #f44336;
+}
