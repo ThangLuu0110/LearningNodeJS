@@ -27,8 +27,11 @@
                       <td><%= user.email %></td>
                       <td><%= user.name %></td>
                       <td><%= user.city %></td>
-                      <td><a href="/edit/<%= user.id %>">Edit</a> | <a href="/delete/<%= user.id %>">Delete</a></td>
-                    </tr>
+                      <td class="action-btn">
+                        <button onclick="editUser('<%= user.id %>')" class="edit-btn">Edit</button>
+                        <button onclick="deleteUser('<%= user.id %>')" class="delete-btn">Delete</button>
+                      </td>
+                    </tr> 
                 <% }) %>
             <% } else { %>
                 <tr>
