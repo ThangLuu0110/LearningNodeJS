@@ -18,6 +18,7 @@
               <th>Email</th>
               <th>Name</th>
               <th>City</th>
+              <th>Action</th>
             </tr>
             <% if (users && users.length > 0) { %>
                 <% users.forEach(function(user) { %>
@@ -26,6 +27,7 @@
                       <td><%= user.email %></td>
                       <td><%= user.name %></td>
                       <td><%= user.city %></td>
+                      <td><a href="/edit/<%= user.id %>">Edit</a> | <a href="/delete/<%= user.id %>">Delete</a></td>
                     </tr>
                 <% }) %>
             <% } else { %>

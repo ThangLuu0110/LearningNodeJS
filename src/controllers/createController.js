@@ -1,20 +1,19 @@
-const connection = require('../config/database')
+const { createUser } = require('../services/CRUDServices')
 
 const getCreateUserPage = (req, res) => {
     return res.render('create.ejs');
 }
 
-const handleCreateUser = (req, res) => {
-    const { email, name, city } = req.body;
-    const query = 'INSERT INTO Users (email, name, city) VALUES (?, ?, ?)';
-    connection.query(query, [email, name, city], (error, results) => {
-        if (error) {
-            console.error('Error creating user:', error);
-            res.status(500).send('Error creating user');
-        } else {
-            res.send('User created successfully');
-        }
-    });
+const handleCreateUser = async (req, res) => {
+    try {
+        const user = req.body;
+        const result = await createUser(user);
+        console.log('result: ', result);
+        res.redirect('/');
+    } catch (error) {
+        console.error('Error creating user:', error);
+        res.status(500).send('Error creating user');
+    }
 }
 
 module.exports = {
