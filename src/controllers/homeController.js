@@ -1,28 +1,17 @@
 const connection = require('../config/database')
 
 const getHomePage = (req, res) => {
-    return res.render('home.ejs');
-}
-
-const getSamplePage = (req, res) => {
-    res.render('sample.ejs')
-}
-
-const handleCreateUser = (req, res) => {
-    const { email, name, city } = req.body;
-    const query = 'INSERT INTO Users (email, name, city) VALUES (?, ?, ?)';
-    connection.query(query, [email, name, city], (error, results) => {
+    const query = 'SELECT id, email, name, city FROM Users';
+    connection.query(query, (error, results) => {
         if (error) {
-            console.error('Error creating user:', error);
-            res.status(500).send('Error creating user');
-        } else {
-            res.send('User created successfully');
+            console.error('Error fetching users:', error);
+            return res.status(500).send('Error fetching users');
         }
+
+        return res.render('home.ejs', { users: results });
     });
 }
 
 module.exports = {
-    getHomePage,
-    getSamplePage,
-    handleCreateUser
+    getHomePage
 }

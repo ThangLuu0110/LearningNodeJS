@@ -55,3 +55,29 @@
     margin-top: 10px;
     cursor: pointer;
 }
+
+.user-list {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.user-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.user-table th {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.user-table th, .user-table td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.user-table tr:hover {background-color: coral;}
