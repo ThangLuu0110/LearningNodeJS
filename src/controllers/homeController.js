@@ -11,6 +11,7 @@ const getHomePage = async (req, res) => {
 }
 
 const handleUpdateUser = (req, res) => {
+    console.log("User Id: ", req.params)
     return res.render('update.ejs');
 }
 

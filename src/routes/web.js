@@ -5,7 +5,7 @@ const {getCreateUserPage, handleCreateUser} = require('../controllers/createCont
 
 router.get('/', getHomePage)
 router.get('/create', getCreateUserPage)
-router.get('/update', handleUpdateUser)
+router.get('/update/:userId', handleUpdateUser)
 
 
 router.post('/create-user', handleCreateUser)
