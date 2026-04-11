@@ -10,6 +10,11 @@ const getHomePage = async (req, res) => {
     }
 }
 
+const handleUpdateUser = (req, res) => {
+    return res.render('update.ejs');
+}
+
 module.exports = {
-    getHomePage
+    getHomePage,
+    handleUpdateUser
 }
