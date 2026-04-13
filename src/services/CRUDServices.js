@@ -11,6 +11,17 @@ const getAllUsers = async () => {
     }
 }
 
+const getUserById = async (userId) => {
+    try {
+        const query = 'SELECT id, email, name, city FROM Users WHERE id = ?';
+        const [results] = await connection.query(query, [userId]);
+        return results && results.length > 0 ? results[0] : {};
+    } catch (error) {
+        console.error('Error fetching users:', error);
+        throw error;
+    }
+}
+
 const createUser = async (user) => {
     try {
         const { email, name, city } = user;
@@ -26,7 +37,26 @@ const createUser = async (user) => {
     }
 }
 
+const updateUser = async (user) => {
+    try {
+        const { userId, email, name, city } = user;
+        console.log(userId, email, name, city );
+        if (!userId|| !email || !name || !city) {
+            throw new Error('All fields are required');
+        }
+
+        const query = 'UPDATE Users SET email = ?, name = ?, city = ? WHERE id = ?';
+        const [results] = await connection.query(query, [email, name, city, userId]);
+        return results;
+    } catch (error) {
+        console.error('Error updating user:', error);
+        throw error;
+    }
+}
+
 module.exports = {
     getAllUsers,
-    createUser
+    getUserById,
+    createUser,
+    updateUser
 }

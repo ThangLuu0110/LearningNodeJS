@@ -1,4 +1,4 @@
-const { getAllUsers } = require('../services/CRUDServices')
+const { getAllUsers, getUserById, updateUser } = require('../services/CRUDServices')
 
 const getHomePage = async (req, res) => {
     try {
@@ -10,12 +10,28 @@ const getHomePage = async (req, res) => {
     }
 }
 
-const handleUpdateUser = (req, res) => {
-    console.log("User Id: ", req.params)
-    return res.render('update.ejs');
+const handleShowUpdatedUser = async (req, res) => {
+    try{
+        const user = await getUserById(req.params.userId);
+        return res.render('update.ejs', {user} );
+    } catch (error) {
+        res.status(500).send('Error fetching user');
+    }
+    
+}
+
+const handleUpdateUser = async (req, res) => {
+    try {
+        const user = req.body;
+        const result = await updateUser(user);
+        res.redirect('/');
+    } catch (error) {
+        res.status(500).send('Error fetching user');
+    }
 }
 
 module.exports = {
     getHomePage,
+    handleShowUpdatedUser,
     handleUpdateUser
 }
