@@ -1,4 +1,4 @@
-const { getAllUsers, getUserById, updateUser } = require('../services/CRUDServices')
+const { getAllUsers, getUserById, updateUser, deleteUser } = require('../services/CRUDServices')
 
 const getHomePage = async (req, res) => {
     try {
@@ -26,12 +26,24 @@ const handleUpdateUser = async (req, res) => {
         const result = await updateUser(user);
         res.redirect('/');
     } catch (error) {
-        res.status(500).send('Error fetching user');
+        res.status(500).send('Error updating user');
+    }
+}
+
+const handleDeleteUser = async (req, res) => {
+    try {
+        const userId = req.params.userId;
+        const results = await deleteUser(userId);
+        res.redirect('/');
+    } catch (error) {
+        res.status(500).send('Error deleting user');
+        
     }
 }
 
 module.exports = {
     getHomePage,
     handleShowUpdatedUser,
-    handleUpdateUser
+    handleUpdateUser,
+    handleDeleteUser
 }

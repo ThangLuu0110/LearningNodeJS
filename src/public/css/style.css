@@ -105,3 +105,19 @@
 .delete-btn {
   background-color: #f44336;
 }
+
+#confirmation-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: none;
+  border-radius: 8px;
+  padding: 20px;
+  width: min(420px, 90vw);
+}
+
+#confirmation-modal::backdrop {
+  background: rgba(0, 0, 0, 0.45);
+}
+
