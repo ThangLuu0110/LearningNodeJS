@@ -29,9 +29,18 @@
                       <td><%= user.city %></td>
                       <td class="action-btn">
                         <a class="edit-btn" href="/update/<%= user.id %>">Edit</a>
-                        <a class="delete-btn" href="/delete/<%= user.id %>">Delete</a>
+                        <a class="delete-btn" onclick="openModal()">Delete</a>
                       </td>
                     </tr> 
+
+                    <dialog id="confirmation-modal">
+                      <h1>Are you sure</h1>
+                      <p>Do you really want to delete this record? This process cannot be undone</p>
+                      <button id="close-modal" onclick="closeModal()">Cancel</button>
+                      <form action="/delete-user/<%= user.id %>" method="POST"">
+                        <button id="delete-user">Delete</button>
+                      </form>
+                  </dialog>
                 <% }) %>
             <% } else { %>
                 <tr>
@@ -40,5 +49,19 @@
             <% } %>
           </table>
     </div>
+
+    
+
+    <script>
+      const openModal = () => {
+        const modal = document.getElementById('confirmation-modal');
+        modal.showModal();
+      }
+
+      const closeModal = () => {
+        const modal = document.getElementById('confirmation-modal');
+        modal.close();
+      }
+    </script>
 </body>
 </html>

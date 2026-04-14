@@ -17,7 +17,7 @@ const getUserById = async (userId) => {
         const [results] = await connection.query(query, [userId]);
         return results && results.length > 0 ? results[0] : {};
     } catch (error) {
-        console.error('Error fetching users:', error);
+        console.error('Error fetching user:', error);
         throw error;
     }
 }
@@ -40,7 +40,6 @@ const createUser = async (user) => {
 const updateUser = async (user) => {
     try {
         const { userId, email, name, city } = user;
-        console.log(userId, email, name, city );
         if (!userId|| !email || !name || !city) {
             throw new Error('All fields are required');
         }
@@ -54,9 +53,25 @@ const updateUser = async (user) => {
     }
 }
 
+const deleteUser = async (userId) => {
+    try {
+        if(!userId){
+            throw new Error ('There is no record to delete')
+        }
+
+        const query = 'DELETE FROM Users WHERE id = ?;';
+        const [results] = await connection.query(query, [userId]);
+        return results;
+    } catch (error){
+        console.error('Error delete user:', error);
+        throw error;
+    }
+}
+
 module.exports = {
     getAllUsers,
     getUserById,
     createUser,
-    updateUser
+    updateUser,
+    deleteUser
 }
